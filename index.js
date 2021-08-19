@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const port = 3000;
+const port = 3001;
 
 app.use(express.json()); //falar para os reqs do express trabalahr com json
 
@@ -44,7 +44,7 @@ app.post('/filmes', (req,res) => {
     const id = filmes.length;
     filmes.push(filme);
 
-    res.send(`Filme adicionado com sucesso ${filme}.`)
+    res.send(`Filme ${filme}adicionado com sucesso no ID ${id}.`)
 });
 
 
@@ -74,8 +74,13 @@ app.delete('/filmes/:id', (req, res) => {
 //sugestao da galera SPLICE (remove da lista sem deixar o null)
 app.delete('/filmesSplice/:id', (req,res)=>{
     const id = req.params.id-1;
+    const filmeAexcluir = filmes[id]
     filmes.splice(id,1) // deleta a partir de qual, quantos vai deletar
-    res.send("Filme excluido com sucesso.")
+
+    if(!filmeAexcluir) {
+        res.send('Filme não encontrado!')
+    }    
+    res.send("Filme excluido com sucesso.");
   });
   
 
