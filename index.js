@@ -66,7 +66,7 @@ app.delete('/filmes/:id', (req, res) => {
         res.send('Filme não encontrado!')
     }
     
-    delete filmes;
+    delete filmes[id];
     res.send(`O filme ${filmeAexcluir} foi apagado da lista.`)
 
 });
